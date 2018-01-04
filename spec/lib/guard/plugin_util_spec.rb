@@ -34,8 +34,8 @@ RSpec.describe Guard::PluginUtil do
       gem = class_double(Gem::Specification)
       stub_const("Gem::Specification", gem)
       expect(Gem::Specification).to receive(:find_all) { gems }
+      allow(Gem::Specification).to receive(:unresolved_deps) { [] }
     end
-
     it "returns the list of guard gems" do
       expect(described_class.plugin_names).to include("myplugin")
     end
